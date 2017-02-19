@@ -1,34 +1,32 @@
 import chalk from 'chalk';
-import chokidar from 'chokidar';
 import { exec } from 'child_process';
+import glob from 'glob';
 
 /* eslint-disable no-console */
 
-const tsWatcher = chokidar.watch('src/**/*.ts', {
-    persistent: true
-});
-
-const jsWatcher = chokidar.watch(['build-scripts/*.js', 'config/*.js', './*.js'], {
-    persistent: true
-});
-
-function tsListener(path) {
-    const cmd = `tslint ${path}`;
-
-    exec(`${cmd}` , (err, stderr) => {
-        err ? console.error(chalk.red(stderr)) : console.log(chalk.blue(`${path}: clean`));
-    });
+function tsListener(err, files) {
+    if (err) {
+        console.log(chalk.red(err));
+    } else {
+        const cmd = `tslint ${files.join(' ')}`;
+        exec(cmd, (procErr, stdout) => {
+            console.log(chalk.red(stdout));
+        });
+    }
 }
 
-function jsListener(path) {
-    const cmd = `eslint ${path}`;
-
-    exec(`${cmd}` , (err, stderr) => {
-        err ? console.error(chalk.red(stderr)) : console.log(chalk.blue(`${path}: clean`));
-    });
+function jsListener(err, files) {
+    if (err) {
+        console.log(chalk.red(err));
+    } else {
+        const cmd = `eslint ${files.join(' ')}`;
+        exec(cmd, (procErr, stdout) => {
+            console.log(chalk.red(stdout));
+        });
+    }
 }
 
-tsWatcher.on('add', tsListener);
-tsWatcher.on('change', tsListener);
-jsWatcher.on('add', jsListener);
-jsWatcher.on('change', jsListener);
+glob('src/*.ts', tsListener);
+
+glob('{build-scripts, config}/*.js', jsListener)
+glob('*.js', jsListener)

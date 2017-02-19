@@ -38,3 +38,6 @@ jspm_packages
 
 #VS Code Settings
 .vscode
+
+#Build Directory
+dist

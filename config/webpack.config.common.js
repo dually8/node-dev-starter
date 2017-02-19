@@ -5,7 +5,7 @@ export default {
         path.resolve(__dirname, '../src/app')
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },

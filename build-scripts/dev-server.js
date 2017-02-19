@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import open from 'open';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
-import config from '../webpack.config';
+import config from '../webpack.config.babel';
 
 /* eslint-disable no-console */
 
