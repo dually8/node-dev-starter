@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "module": "es6",
+        "moduleResolution": "node",
+        "target": "es6",
+        "removeComments": true,
+        "noImplicitAny": true,
+        "sourceMap": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

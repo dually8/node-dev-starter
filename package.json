@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "node ./build-scripts/start-message.js",
-    "start": "npm-run-all security-check start-dev-server",
-    "start-dev-server": "node ./build-scripts/server.js",
-    "security-check": "node ./build-scripts/security-check.js",
-    "localtunnel": "node ./build-scripts/localtunnel.js",
-    "share": "npm-run-all --parallel start-dev-server localtunnel"
+    "prestart": "babel-node ./build-scripts/start-message.js",
+    "start": "npm-run-all --parallel security-check start-dev-server lint",
+    "start-dev-server": "babel-node ./build-scripts/dev-server.js",
+    "security-check": "babel-node ./build-scripts/security-check.js",
+    "localtunnel": "babel-node ./build-scripts/localtunnel.js",
+    "share": "npm-run-all --parallel start-dev-server localtunnel",
+    "lint": "babel-node ./build-scripts/lint.js"
   },
   "repository": {
     "type": "git",
@@ -32,12 +33,33 @@
     "@types/express": "^4.0.35",
     "@types/node": "^7.0.5",
     "@types/open": "0.0.29",
+    "awesome-typescript-loader": "^3.0.4",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-latest": "^6.22.0",
+    "babel-register": "^6.23.0",
     "chalk": "^1.1.3",
+    "chokidar": "^1.6.1",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.15.0",
+    "eslint-plugin-import": "^2.2.0",
     "express": "^4.14.1",
     "localtunnel": "^1.8.2",
+    "node-sass": "^4.5.0",
     "npm-run-all": "^4.0.1",
     "nsp": "^2.6.2",
     "open": "0.0.5",
-    "typescript": "^2.1.6"
+    "sass-loader": "^6.0.1",
+    "style-loader": "^0.13.1",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.6",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-merge": "^2.6.1"
+  },
+  "dependencies": {},
+  "watch": {
+    "lint": "src/**/*.ts"
   }
 }

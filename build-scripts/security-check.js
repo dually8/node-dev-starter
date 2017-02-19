@@ -1,9 +1,11 @@
-var chalk = require('chalk');
-var exec = require('child_process').exec;
+import chalk from 'chalk';
+import { exec } from 'child_process';
 
-var cmd = 'nsp check';
+/* eslint-disable no-console */
+
+const cmd = 'nsp check';
 
 console.log(chalk.green('Running security check...'));
-exec(cmd, function (err, stdout, stderr) {
+exec(cmd, (err, stdout, stderr) => {
     err ? console.log(stderr) : console.log(chalk.blue(stdout));
 });
