@@ -34,5 +34,6 @@ export default {
     },
     resolve: {
         extensions: ['.ts', '.js', '.css']
-    }
+    },
+    target: "node"
 }

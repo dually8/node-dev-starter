@@ -1,6 +1,6 @@
 //DO NOT TRANSPILE
 
-var tsBabelNode = require('ts-babel-node');
-tsBabelNode.register();
+var babelRegister = require('babel-register');
+babelRegister();
 
 require.extensions['.css'] = function () {};
