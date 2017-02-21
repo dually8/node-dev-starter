@@ -2,19 +2,10 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 var fs = require('fs');
 
-function bundleModules() {
-    var modules = {};
-    fs.readdirSync(path.resolve(__dirname, '../../node_modules'))
-    .filter(x => ['.bin'].indexOf(x) === -1)
-    .forEach(mod => { modules[mod] = `commonjs ${mod}`; });
-    return modules;
-}
-
 module.exports = {
     entry: {
         main: './src/main.ts'
     },
-    externals: bundleModules(),
     module: {
         rules: [
             {
