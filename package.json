@@ -2,7 +2,7 @@
   "name": "js-dev-starter",
   "version": "1.0.0",
   "description": "Javascript Development Starter Kit",
-  "main": "app.js",
+  "main": "src/main.ts",
   "scripts": {
     "build:dev": "npm run clean:dist && npm test && webpack --config config/server/webpack.dev.js --progress --profile",
     "build:prod": "npm run clean:dist && npm test && webpack --config config/server/webpack.prod.js --progress --profile --bail",
@@ -64,6 +64,7 @@
     "babel-register": "^6.23.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "copy-webpack-plugin": "^4.0.1",
     "mocha": "^3.2.0",
     "nsp": "^2.6.2",
     "rimraf": "^2.6.0",
