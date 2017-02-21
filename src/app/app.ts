@@ -6,16 +6,16 @@ import logger           from 'morgan';
 import { IndexRouter }  from '../routes/index/index.route';
 
 export class App {
-    private _appInstance = express();
+    private _instance = express();
 
     constructor() {
-        this._appInstance.use(logger('dev'));
-        this._appInstance.use(bodyParser.json());
-        this._appInstance.use(bodyParser.urlencoded({ extended: false }));
-        this._appInstance.use(cookieParser());
+        this._instance.use(logger('dev'));
+        this._instance.use(bodyParser.json());
+        this._instance.use(bodyParser.urlencoded({ extended: false }));
+        this._instance.use(cookieParser());
 
-        this._appInstance.use('/', new IndexRouter().router);
+        this._instance.use('/', new IndexRouter().router);
     }
 
-    get appInstance() { return this._appInstance; }
+    get instance() { return this._instance; }
 }

@@ -1,4 +1,3 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var merge = require('webpack-merge');
 
 var commonConfig = require('./webpack.common');
