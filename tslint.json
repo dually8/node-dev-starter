@@ -11,7 +11,13 @@
      * Any rules specified here will override those from the base config we are extending.
      */
     "curly": true,
-    "quotemark": [true, "single", "avoid-escape"]
+    "quotemark": [
+      "single"
+    ],
+    "variable-name": [
+      "check-format",
+      "allow-leading-underscore"
+    ]
   },
   "jsRules": {
     /*
