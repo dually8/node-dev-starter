@@ -1,5 +1,6 @@
 var fs = require('fs');
 var merge = require('webpack-merge');
+var path = require('path');
 
 var commonConfig = require('./webpack.common');
 

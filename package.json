@@ -1,11 +1,11 @@
 {
-  "name": "js-dev-starter",
+  "name": "node-dev-starter",
   "version": "1.0.0",
-  "description": "Javascript Development Starter Kit",
+  "description": "Node.js Development Starter Kit",
   "main": "src/main.ts",
   "scripts": {
-    "build:dev": "npm run clean:dist && npm test && webpack --config config/server/webpack.dev.js --progress --profile",
-    "build:prod": "npm run clean:dist && npm test && webpack --config config/server/webpack.prod.js --progress --profile --bail",
+    "build:dev": "npm run clean:dist && npm test && webpack --config config/webpack/webpack.dev.js --progress --profile",
+    "build:prod": "npm run clean:dist && npm test && webpack --config config/webpack/webpack.prod.js --progress --profile --bail",
     "build": "npm run build:dev",
     "clean:dist": "npm run rimraf -- dist",
     "clean:install": "npm set progress=false && npm install",
@@ -32,9 +32,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rharris2825/js-dev-starter.git"
+    "url": "git+https://github.com/rharris2825/node-dev-starter.git"
   },
   "keywords": [
+    "Node.js",
     "Development",
     "Starter",
     "Kit"
@@ -42,9 +43,9 @@
   "author": "John Robert Harris II",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rharris2825/js-dev-starter/issues"
+    "url": "https://github.com/rharris2825/node-dev-starter/issues"
   },
-  "homepage": "https://github.com/rharris2825/js-dev-starter#readme",
+  "homepage": "https://github.com/rharris2825/node-dev-starter#readme",
   "devDependencies": {
     "@types/body-parser": "0.0.34",
     "@types/chai": "^3.4.35",
