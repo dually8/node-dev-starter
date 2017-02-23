@@ -17,7 +17,11 @@
     "variable-name": [
       "check-format",
       "allow-leading-underscore"
-    ]
+    ],
+    "array-type": [
+      "generic"
+    ],
+    "arrow-parens": false
   },
   "jsRules": {
     /*
