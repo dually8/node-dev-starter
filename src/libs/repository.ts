@@ -1,4 +1,4 @@
-import { Collection as MongoCollection } from 'mongodb';
+import { Collection as MongoCollection, ObjectID } from 'mongodb';
 
 import { Collection, ICollection } from './collection';
 import { IContext } from './context';
@@ -22,15 +22,15 @@ export class Repository<T extends IEntity> implements IRepository<T> {
 
     public add(...entities: Array<T>): Promise<T | ICollection<T>> {
         return this._collectionPromise.then(collection => {
-            let actionResult: T | ICollection<T>;
+            let actionResult: Promise<T | Collection<T>>;
             if (entities.length > 1) {
-                collection.insertMany(entities).then(result => {
-                    actionResult = new Collection(result.ops as Array<T>);
-                }, errorHandler);
+                actionResult = collection.insertMany(entities).then(result => {
+                    return new Collection(result.ops as Array<T>);
+                }, errorHandler) as Promise<T | Collection<T>>;
             } else {
-                collection.insertOne(entities.pop()).then(result => {
-                    actionResult = result.ops.pop() as T;
-                }, errorHandler);
+                actionResult = collection.insertOne(entities.pop()).then(result => {
+                    return result.ops.pop() as T;
+                }, errorHandler) as Promise<T | Collection<T>>;
             }
             return actionResult;
         });
@@ -38,30 +38,28 @@ export class Repository<T extends IEntity> implements IRepository<T> {
 
     public delete(entity: IEntity): void {
         this._collectionPromise.then(collection => {
-            collection.deleteOne({ _id: entity.id }).catch(errorHandler);
+            collection.deleteOne({ _id: new ObjectID(entity._id) }).catch(errorHandler);
         });
     }
 
     public getById(id: string): Promise<T> {
         return this._collectionPromise.then(collection => {
-            let actionResult: T;
-            collection.findOne({ _id: id }).then(result => {
-                actionResult = result;
-            }, errorHandler);
-            return actionResult;
+            return collection.findOne({ _id: new ObjectID(id) }).then(result => {
+                return result as T;
+            }, errorHandler) as Promise<T>;
         });
     }
 
     public get(filter?: Object): Promise<ICollection<T>> {
         return this._collectionPromise.then(collection => {
-            let actionResult: ICollection<T>;
+            let actionResult: Promise<Collection<T>>;
             if (filter) {
-                collection.find(filter).toArray().then(result => {
-                    actionResult = new Collection(result as Array<T>);
+                actionResult = collection.find(filter).toArray().then(result => {
+                    return new Collection(result as Array<T>);
                 }, errorHandler);
             } else {
-                collection.find().toArray().then(result => {
-                    actionResult = new Collection(result as Array<T>);
+                actionResult = collection.find(filter).toArray().then(result => {
+                    return new Collection(result as Array<T>);
                 }, errorHandler);
             }
             return actionResult;
@@ -70,7 +68,7 @@ export class Repository<T extends IEntity> implements IRepository<T> {
 
     public update(entity: T): void {
         this._collectionPromise.then(collection => {
-            collection.updateOne({ _id: entity.id }, entity);
+            collection.updateOne({ _id: new ObjectID(entity._id) }, entity);
         });
     }
 }

@@ -1,4 +1,4 @@
-import { Entity, IEntity } from '../entity';
+import { IEntity } from '../entity';
 
 export interface IUser extends IEntity {
     firstName: string;
@@ -11,7 +11,8 @@ export interface IUser extends IEntity {
     zip: number;
 }
 
-export class User extends Entity implements IUser {
+export class User implements IUser {
+    public readonly _id: string;
     public firstName: string;
     public middleName: string;
     public lastName: string;

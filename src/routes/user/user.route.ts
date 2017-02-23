@@ -15,7 +15,7 @@ export class UserRouter {
 
     private getUser(req: express.Request, res: express.Response): void {
         const id = req.params.userId as string;
-        this.userService.get().then(result => {
+        this.userService.getById(id).then(result => {
             res.json(result);
         }, err => {
             res.status(500);

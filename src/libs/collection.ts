@@ -15,6 +15,6 @@ export class Collection<T extends IEntity> implements ICollection<T> {
     get items(): Array<T> { return this._items; }
 
     public getItem(id: string): T {
-        return this.items.find(x => x.id === id);
+        return this.items.find(x => x._id === id);
     }
 }
